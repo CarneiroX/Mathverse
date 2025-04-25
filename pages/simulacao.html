@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🌐 O Mundo Algébrico</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4a90e2;
+      color: white;
+      text-align: center;
+      padding: 1.5rem 1rem;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    .fala {
+      background-color: #fff4e6;
+      padding: 1rem;
+      border-left: 4px solid #ffa726;
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    label, select, input {
+      font-size: 1rem;
+      margin: 0.5rem;
+    }
+
+    canvas {
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .resultado {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .curiosidade {
+      background-color: #e1f5fe;
+      padding: 0.5rem;
+      border-left: 4px solid #03a9f4;
+      margin-top: 1rem;
+      border-radius: 5px;
+    }
+
+    .voltar {
+      margin-top: 2rem;
+      display: inline-block;
+      text-decoration: none;
+      color: #4a90e2;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌐 O Mundo Algébrico</h1>
+    <p>Simule. Descubra. Aprenda.</p>
+  </header>
+
+  <main>
+    <div class="fala" id="falaGuia">Olá explorador! Pronto para descobrir como os números se comportam?</div>
+
+    <label for="operacao">Escolha uma operação:</label>
+    <select id="operacao" onchange="mostrarSimulacao()">
+      <option value="funcao">Função Quadrática</option>
+      <option value="conjuntos">União e Interseção</option>
+      <option value="modulo">Função Modular</option>
+    </select>
+
+    <section id="simulacao" class="resultado">
+      <!-- Conteúdo gerado via JS -->
+    </section>
+
+    <a class="voltar" href="index.html">⬅ Voltar ao Início</a>
+  </main>
+
+  <script>
+    const guia = document.getElementById("falaGuia");
+
+    function mostrarSimulacao() {
+      const opcao = document.getElementById("operacao").value;
+      const simulacao = document.getElementById("simulacao");
+
+      if (opcao === "funcao") {
+        guia.textContent = "Uau! Vamos explorar parábolas. Mexa nos valores e observe a dança do gráfico.";
+        simulacao.innerHTML = `
+          <h2>Função Quadrática</h2>
+          <label>a: <input type="range" min="-5" max="5" value="1" id="a" oninput="atualizarGraficoQuadratico()"></label>
+          <label>b: <input type="range" min="-10" max="10" value="0" id="b" oninput="atualizarGraficoQuadratico()"></label>
+          <label>c: <input type="range" min="-10" max="10" value="0" id="c" oninput="atualizarGraficoQuadratico()"></label>
+          <canvas id="grafico" width="400" height="300"></canvas>
+          <div class="curiosidade">💡 Curiosidade: O valor de "a" define se a parábola está sorrindo (a > 0) ou triste (a < 0)!</div>
+        `;
+        atualizarGraficoQuadratico();
+      }
+
+      if (opcao === "conjuntos") {
+        guia.textContent = "Vamos brincar com conjuntos! Que tal unir ou encontrar o que eles têm em comum?";
+        simulacao.innerHTML = `
+          <h2>Operações com Conjuntos</h2>
+          <p>A = {1, 2, 3, 4}</p>
+          <p>B = {3, 4, 5, 6}</p>
+          <button onclick="mostrarOperacao('uniao')">União (A ∪ B)</button>
+          <button onclick="mostrarOperacao('intersecao')">Interseção (A ∩ B)</button>
+          <div id="resultadoConjunto"></div>
+          <div class="curiosidade">🔍 Curiosidade: Conjuntos são a base da lógica matemática e da computação!</div>
+        `;
+      }
+
+      if (opcao === "modulo") {
+        guia.textContent = "Função módulo em ação! Ela transforma qualquer valor negativo em positivo.";
+        simulacao.innerHTML = `
+          <h2>Função Modular: f(x) = |x|</h2>
+          <p>Digite um número:</p>
+          <input type="number" id="valorX" value="-3" oninput="mostrarModulo()"/>
+          <p id="resultadoModulo"></p>
+          <div class="curiosidade">📘 Curiosidade: O módulo é usado para medir distâncias na reta real!</div>
+        `;
+        mostrarModulo();
+      }
+    }
+
+    function atualizarGraficoQuadratico() {
+      const a = parseFloat(document.getElementById("a").value);
+      const b = parseFloat(document.getElementById("b").value);
+      const c = parseFloat(document.getElementById("c").value);
+      const canvas = document.getElementById("grafico");
+      const ctx = canvas.getContext("2d");
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+
+      let started = false;
+      for (let x = -20; x <= 20; x += 0.2) {
+        const realX = canvas.width / 2 + x * 10;
+        const y = a * x * x + b * x + c;
+        const realY = canvas.height / 2 - y * 10;
+
+        if (!started) {
+          ctx.moveTo(realX, realY);
+          started = true;
+        } else {
+          ctx.lineTo(realX, realY);
+        }
+      }
+
+      ctx.strokeStyle = "#4a90e2";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    function mostrarOperacao(tipo) {
+      const A = [1, 2, 3, 4];
+      const B = [3, 4, 5, 6];
+      let resultado;
+
+      if (tipo === "uniao") {
+        resultado = [...new Set([...A, ...B])];
+        guia.textContent = "Você juntou os dois conjuntos! Agora temos todos os elementos combinados.";
+      } else {
+        resultado = A.filter(x => B.includes(x));
+        guia.textContent = "Você buscou o que há em comum entre os conjuntos. Isso é interseção!";
+      }
+
+      document.getElementById("resultadoConjunto").innerHTML = `<p>Resultado: { ${resultado.join(", ")} }</p>`;
+    }
+
+    function mostrarModulo() {
+      const x = parseFloat(document.getElementById("valorX").value);
+      const modulo = Math.abs(x);
+      guia.textContent = `Você digitou ${x}. O módulo é sempre positivo: ${modulo}!`;
+      document.getElementById("resultadoModulo").textContent = `f(x) = |${x}| = ${modulo}`;
+    }
+
+    // Inicializa com o primeiro valor
+    mostrarSimulacao();
+  </script>
+</body>
+</html>

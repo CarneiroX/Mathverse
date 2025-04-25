@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎮 A Jornada do Matemático Perdido</title>
+  <link href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #d1c4e9, #b3e5fc);
+      padding: 1rem;
+      color: #333;
+    }
+    header {
+      background-color: #512da8;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background-color: #ffffffcc;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .game button {
+      margin: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      background-color: #2ecc71;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+    .game button:hover {
+      background-color: #27ae60;
+    }
+    .voltar {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #512da8;
+      text-decoration: none;
+    }
+    .feedback {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="animate__animated animate__fadeInDown">
+    <h1>🎮 A Jornada do Matemático Perdido</h1>
+    <p>Prove seu valor e derrote os desafios matemáticos!</p>
+  </header>
+
+  <main>
+    <section class="game">
+      <div id="narrativa"></div>
+      <div id="respostas"></div>
+      <div id="status"></div>
+      <div id="feedback" class="feedback"></div>
+    </section>
+    <a class="voltar" href="index.html">⬅ Voltar ao Início</a>
+  </main>
+
+  <script>
+    let nivel = 1;
+    let pontos = 0;
+    let vidas = 3;
+
+    const narrativa = document.getElementById("narrativa");
+    const respostas = document.getElementById("respostas");
+    const status = document.getElementById("status");
+    const feedback = document.getElementById("feedback");
+
+    function atualizarStatus() {
+      status.innerHTML = `<p><strong>Nível:</strong> ${nivel} | <strong>Pontos:</strong> ${pontos} | <strong>Vidas:</strong> ${vidas}</p>`;
+    }
+
+    function carregarNivel() {
+      atualizarStatus();
+      respostas.innerHTML = "";
+      feedback.innerHTML = "";
+
+      if (vidas <= 0) {
+        narrativa.innerHTML = `<p>💀 Game Over! Suas vidas acabaram.</p>`;
+        return;
+      }
+
+      const niveis = {
+        1: {
+          texto: "Nível 1: Três caminhos aparecem. Qual leva à liberdade?",
+          opcoes: [
+            { texto: "Caminho com números primos", correto: false },
+            { texto: "Caminho com múltiplos de 3", correto: false },
+            { texto: "Caminho com potências de 2", correto: true },
+          ]
+        },
+        2: {
+          texto: "Nível 2: Quais números estão na interseção dos conjuntos A={1,2,3,4} e B={3,4,5,6}?",
+          opcoes: [
+            { texto: "3 e 4", correto: true },
+            { texto: "1 e 2", correto: false },
+            { texto: "5 e 6", correto: false },
+          ]
+        },
+        3: {
+          texto: "Nível 3: A proposição (V ∧ F) ∨ V é?",
+          opcoes: [
+            { texto: "Verdadeira", correto: true },
+            { texto: "Falsa", correto: false },
+          ]
+        },
+        4: {
+          texto: "Nível 4: Um grafo liga A-B-C-D com pesos iguais. Qual o menor caminho de A até D?",
+          opcoes: [
+            { texto: "A → B → C → D", correto: true },
+            { texto: "A → D", correto: false },
+            { texto: "A → C → D", correto: false },
+          ]
+        },
+        5: {
+          texto: "Nível 5: Qual expressão representa a distributiva de 3(x + 4)?",
+          opcoes: [
+            { texto: "3x + 12", correto: true },
+            { texto: "3x + 4", correto: false },
+            { texto: "x + 12", correto: false },
+          ]
+        },
+        6: {
+          texto: "Nível 6: Um grafo tem 4 vértices conectados em ciclo. Quantos caminhos distintos existem de um vértice ao seu oposto?",
+          opcoes: [
+            { texto: "2", correto: true },
+            { texto: "1", correto: false },
+            { texto: "4", correto: false },
+          ]
+        },
+        7: {
+          texto: "Nível 7: Em lógica, qual o valor de (¬V ∨ F)?",
+          opcoes: [
+            { texto: "Falso", correto: true },
+            { texto: "Verdadeiro", correto: false },
+          ]
+        },
+        8: {
+          texto: "Nível 8: Em um grafo de Dijkstra com A-B(1), B-C(2), A-C(4), qual o menor caminho de A até C?",
+          opcoes: [
+            { texto: "A → B → C", correto: true },
+            { texto: "A → C", correto: false },
+          ]
+        },
+        9: {
+          texto: "Nível 9: Um conjunto tem os elementos {2,4,6,8}. Qual é a média?",
+          opcoes: [
+            { texto: "5", correto: false },
+            { texto: "6", correto: true },
+            { texto: "4", correto: false },
+          ]
+        },
+        10: {
+          texto: "🎉 Parabéns! Você completou todos os desafios!",
+          opcoes: []
+        }
+      };
+
+      if (niveis[nivel]) {
+        narrativa.innerHTML = `<p>${niveis[nivel].texto}</p>`;
+        criarBotoes(niveis[nivel].opcoes);
+      } else {
+        narrativa.innerHTML = `<p>Fim da Jornada!</p>`;
+      }
+    }
+
+    function criarBotoes(opcoes) {
+      respostas.innerHTML = "";
+      opcoes.forEach(opcao => {
+        const btn = document.createElement("button");
+        btn.textContent = opcao.texto;
+        btn.onclick = () => verificarResposta(opcao.correto);
+        respostas.appendChild(btn);
+      });
+    }
+
+    function verificarResposta(correto) {
+      if (correto) {
+        pontos += 10;
+        nivel += 1;
+        feedback.innerHTML = "✅ Resposta correta! Muito bem!";
+        carregarNivel();
+      } else {
+        vidas -= 1;
+        feedback.innerHTML = "❌ Resposta incorreta. Tente novamente.";
+        carregarNivel();
+      }
+    }
+
+    carregarNivel();
+  </script>
+</body>
+</html>
