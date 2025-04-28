@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📊 Laboratório de Visualização</title>
+  <link rel="stylesheet" href="C:\Users\alexc\OneDrive\Documentos\Mathverse\css/grafico.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <a href="C:\Users\alexc\OneDrive\Documentos\Mathverse\index.html" class="botao-voltar">✖</a>
+
+  <main class="container">
+
+    <div class="inputs-card">
+      <div>
+        <label for="valoresX">Valores de X:</label>
+        <input id="valoresX" type="text" placeholder="Ex: 1,2,3,4">
+      </div>
+
+      <div>
+        <label for="valoresY">Valores de Y:</label>
+        <input id="valoresY" type="text" placeholder="Ex: 2,4,6,8">
+      </div>
+
+      <div>
+        <label for="valoresY2">Valores de Y (Série 2, opcional):</label>
+        <input id="valoresY2" type="text" placeholder="Ex: 3,6,9,12">
+      </div>
+
+      <div>
+        <label for="nomeEixoX">Nome do Eixo X:</label>
+        <input id="nomeEixoX" type="text" placeholder="Ex: Horas de estudo">
+      </div>
+
+      <div>
+        <label for="nomeEixoY">Nome do Eixo Y:</label>
+        <input id="nomeEixoY" type="text" placeholder="Ex: Nota da prova">
+      </div>
+
+      <div>
+        <label for="tipoGrafico">Tipo de Gráfico:</label>
+        <select id="tipoGrafico">
+          <option value="line">Linha</option>
+          <option value="bar">Barra</option>
+          <option value="scatter">Dispersão</option>
+        </select>
+      </div>
+
+      <div class="botoes">
+        <button onclick="atualizarGrafico()">Gerar Gráfico</button>
+        <button onclick="salvarImagem()">Salvar Imagem</button>
+        <button onclick="exportarCSV()">Exportar CSV</button>
+      </div>
+    </div>
+
+    <section id="grafico">
+      <canvas id="meuGrafico"></canvas>
+    </section>
+  </main>
+
+  <script src="C:\Users\alexc\OneDrive\Documentos\Mathverse\js/grafico.js"></script>
+</body>
+</html>
