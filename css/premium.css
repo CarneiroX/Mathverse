@@ -1,29 +1,33 @@
-/* Reset básico */
+/* Reset Básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
   
-  body {
-    background-color: #203037;
+  body, html {
+    height: 100%;
     font-family: 'Inter', sans-serif;
-    color: #F5F5F5;
-    display: flex;
+    color: #f5f5f5;
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 118, 118, 0.8),
+      rgba(113, 68, 191, 0.8)
+    );
     justify-content: center;
     align-items: center;
     min-height: 100vh;
   }
-  
+
   .premium-container {
-    padding: 2rem;
+    padding: 10rem;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
   .premium-card {
-    background-color: #3D5C69;
+    background-color: #ffffff21;
     border-radius: 16px;
     padding: 3rem 2rem;
     max-width: 500px;
@@ -33,29 +37,29 @@
   }
   
   /* Título */
-  .title h1 {
+  .titulo h1 {
     font-family: 'Karst', serif;
     font-size: 2.5rem;
     font-weight: 800;
-    color: #ffffff;
+    color: #ffffffee;
     margin-bottom: 0.5rem;
   }
   
-  .title .subtitle {
+  .titulo .subtitulo {
     font-size: 1rem;
-    color: #e0e0e0;
+    color: #ffffffee;
     margin-bottom: 2rem;
   }
   
-  /* Lista de Benefícios */
-  .benefits {
+  /* Benefícios do Premium */
+  .beneficios {
     list-style: none;
     text-align: left;
     padding-left: 1rem;
     margin-bottom: 2rem;
   }
   
-  .benefits li {
+  .beneficios li {
     margin-bottom: 0.75rem;
     font-size: 1rem;
   }
@@ -74,16 +78,17 @@
   
   .mensal {
     font-size: 1rem;
-    color: #cccccc;
+    color: #f0f0f0;
   }
   
-  /* Botões */
+  /* Botão de Comprar */
   .botoes-premium {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
-  
+
+   /* Botão Voltar "X" */
   .btn-comprar {
     background-color: #00b894;
     color: white;
@@ -132,7 +137,7 @@
     color: #FF6B6B;
   }
 
-  /* Efeito no botão "X" */
+  /* Efeito no Botão Voltar "X" */
   .botao-voltar {
   transition: transform 0.3s ease, color 0.3s ease;
   }
