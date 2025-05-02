@@ -1,3 +1,10 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
 body {
     width: 1920px;
     height: 1080px;
@@ -24,7 +31,7 @@ body {
     height: 78px;
     flex-shrink: 0;
     color: rgba(0, 177, 255, 0.95);
-    font-family: Karst;
+    font-family: 'Poppins', sans-serif;
     font-size: 81px;
     font-style: normal;
     font-weight: 1000;
@@ -42,7 +49,7 @@ body {
 
 .idioma .texto{
     color: rgba(205, 205, 205, 0.65);
-    font-family: Lalezar;
+    font-family: 'Poppins', sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -225,7 +232,7 @@ body {
 .boas_vindas .texto{
     color: rgba(67, 67, 67, 0.85);
     text-align: center;
-    font-family: Lalezar;
+    font-family: 'Inter', sans-serif;
     font-size: 37px;
     font-style: normal;
     font-weight: 900;
@@ -254,7 +261,7 @@ body {
     box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.30) inset;
     color: #FFF;
     text-align: center;
-    font-family: Lalezar;
+    font-family: 'Poppins', sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -284,7 +291,7 @@ body {
     box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.30) inset;
     color: rgba(0, 196, 240, 0.95);
     text-align: center;
-    font-family: Lalezar;
+    font-family: 'Poppins', sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -314,8 +321,8 @@ body {
     flex-shrink: 0;
     color: rgba(67, 67, 67, 0.80);
     text-align: center;
-    font-family: Lalezar;
-    font-size: 22px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
