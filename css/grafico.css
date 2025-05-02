@@ -11,29 +11,13 @@ body {
   position: relative;
 }
 
-.botao-voltar {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 28px;
-  color: white;
-  text-decoration: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.botao-voltar:hover {
-  color: #FF6B6B;
-}
-
 .container {
   padding: 2rem;
   width: 90%;
   max-width: 800px;
 }
 
+/* Card 1 - Input dos Valores */
 .inputs-card {
   background-color: #3D5C69;
   padding: 2rem;
@@ -58,6 +42,7 @@ input, select {
   border-radius: 8px;
 }
 
+/* Botões do Card */
 .botoes {
   display: flex;
   flex-wrap: wrap;
@@ -65,6 +50,7 @@ input, select {
   margin-top: 1rem;
   justify-content: center;
 }
+
 .botoes button {
   padding: 0.6rem 1.5rem;
   background-color: #00c9a7;
@@ -80,13 +66,14 @@ button:hover {
   transform: translateY(-2px);
 }
 
+/* Card 2 - Área do Gráfico */
 #grafico {
   background-color: #D9D9D9;
   padding: 1rem;
   border-radius: 12px;
 }
 
-/* Animação de fade-in geral */
+/* Animação de Fade-in na Página */
 body {
   animation: fadeIn 1s ease-in;
 }
@@ -97,12 +84,12 @@ body {
   to { opacity: 1; }
 }
 
-/* Animação de entrada no Card */
+/* Animação de Input no Card */
 .inputs-card {
   animation: slideUp 1s ease-out;
 }
 
-/* Definição da animação slideUp */
+/* Definição de Animação SlideUp */
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -114,11 +101,23 @@ body {
   }
 }
 
-/* Efeito de hover "glow" nos botões 
-button:hover {
-  background-color: #00796b;
-  box-shadow: 0 0 10px #00c4b4, 0 0 20px #00c4b4;
-}*/
+/* Botão Voltar "X" */
+.botao-voltar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 28px;
+    color: white;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+  
+.botao-voltar:hover {
+    color: #FF6B6B;
+}
 
 /* Efeito no botão "X" */
 .botao-voltar {
@@ -129,3 +128,9 @@ button:hover {
   transform: scale(1.2);
   color: #FF6B6B;
 }
+
+/* Efeito de hover "glow" nos botões 
+button:hover {
+  background-color: #00796b;
+  box-shadow: 0 0 10px #00c4b4, 0 0 20px #00c4b4;
+}*/
