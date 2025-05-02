@@ -1,3 +1,10 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     width: 1920px;
     height: 1080px;
@@ -45,7 +52,7 @@ body {
     background: #131F24;
     color: #17AFF0;
     text-align: center;
-    font-family: Lalezar;
+    font-family: 'Poppins', sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -73,7 +80,7 @@ body {
     margin-left: 50%;
     flex-shrink: 0;
     color: #FFF;
-    font-family: Lalezar;
+    font-family: 'Poppins', sans-serif;
     font-size: 48px;
     font-style: normal;
     font-weight: 400;
@@ -106,7 +113,7 @@ body {
     background: transparent;
 
     color: #FFF;
-    font-family: Lalezar;
+    font-family: 'Poppins', sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -140,7 +147,7 @@ body {
     background: transparent;
 
     color: #FFF;
-    font-family: Lalezar;
+    font-family: 'Poppins', sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -174,7 +181,7 @@ body {
     background: #17AFF0;
     color: #131F24;
     text-align: center;
-    font-family: Lalezar;
+    font-family: 'Poppins', sans-serif;
     font-size: 32px;
     font-style: normal;
     font-weight: 400;
@@ -195,7 +202,7 @@ body {
     flex-shrink: 0;
     color: #717171;
     text-align: center;
-    font-family: Lalezar;
+    font-family: 'Inter', sans-serif;
     font-size: 21px;
     font-style: normal;
     font-weight: 400;
