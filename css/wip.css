@@ -1,0 +1,92 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Lalezar', cursive;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 118, 118, 0.8),
+    rgba(113, 68, 191, 0.8)
+  );
+  justify-content: center;
+  align-items: center;
+}
+
+.wip-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 12rem;
+}
+
+.wip-card {
+  background-color: rgba(217, 217, 217, 0.2);
+  padding: 4rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 720px;
+  width: 100%;
+}
+
+  /* Conteúdo do Card */
+.wip-titulo {
+  font-size: 64px;
+  color: white;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+.wip-mensagem {
+  font-size: 40px;
+  color: white;
+  line-height: 1.5;
+}
+
+  /* Botão Voltar "X" */
+.btn-voltar {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-voltar:hover {
+  background-color: #ffffff22;
+}
+
+.botao-voltar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 28px;
+  color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.botao-voltar:hover {
+  color: #FF6B6B;
+}
+
+  /* Efeito no Botão Voltar "X" */
+.botao-voltar {
+transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.botao-voltar:hover {
+transform: scale(1.2);
+color: #FF6B6B;
+}
