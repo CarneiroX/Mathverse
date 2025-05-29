@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resumo de Sistemas Lineares e Matriz</title>
+  <link rel="stylesheet" href="../css/quiz.css" />
+</head>
+<body>
+
+   <a href="aprender.html" class="botao-voltar">✖</a>
+
+  <div class="container">
+    <div class="lives" id="lives">❤️❤️❤️❤️</div>
+    <div class="progress-bar"><div id="progress" class="progress"></div></div>
+    <div id="question" class="question">Carregando pergunta...</div>
+    <div class="options">
+      <button class="option" onclick="responder(0)">A</button>
+      <button class="option" onclick="responder(1)">B</button>
+      <button class="option" onclick="responder(2)">C</button>
+      <button class="option" onclick="responder(3)">D</button>
+    </div>
+    <div class="controls">
+      <button class="control-button" onclick="pular()">Pular</button>
+      <button class="control-button" onclick="verificar()">Verificar</button>
+    </div>
+    <div id="feedback" class="feedback"></div>
+  </div>
+
+  <script>
+    const perguntas = [
+      {
+        texto: "Um sistema linear é formado por:",
+        opcoes: [
+          "Apenas uma equação e uma incógnita",
+          "Duas ou mais equações com duas ou mais incógnitas",
+          "Apenas equações quadráticas",
+          "Equações que não têm incógnitas"
+        ],
+        correta: 1
+      },
+      {
+        texto: "O que acontece quando multiplicamos qualquer matriz por uma matriz identidade do mesmo tamanho?",
+        opcoes: [
+          "A matriz é zerada",
+          "A matriz é transposta",
+          "A matriz permanece a mesma",
+          "A matriz dobra os valores"
+        ],
+        correta: 2
+      },
+      {
+        texto: "Se um sistema de equações possui solução única, então:",
+        opcoes: ["As equações representam a mesma reta", "As equações não se encontram", "O sistema é impossível", "As equações se interceptam em um ponto"],
+        correta: 3
+      },
+      {
+        texto: "A multiplicação de uma matriz 2 x 2 por um número real k significa:",
+        opcoes: [
+          "Multiplicar todos os elementos da matriz por k",
+          "Trocar os elementos de posição",
+          "Somar k a todos os elementos",
+          "Dividir a matriz em duas"
+        ],
+        correta: 0
+      },
+      {
+        texto: "Um sistema linear com duas equações e duas incógnitas tem uma única solução quando:",
+        opcoes: [
+          "As retas são paralelas",
+          "As retas são coincidentes",
+          "As retas se cruzam em um ponto",
+          "As equações são idênticas"
+        ],
+        correta: 2
+      },
+      {
+        texto: "Um sistema é considerado impossível quando:",
+        opcoes: ["Possui infinitas soluções", "As equações representam retas paralelas que nunca se encontram", "Possui apenas uma solução", "Suas equações são a mesma reta"],
+        correta: 1
+      },
+      {
+        texto: "Um sistema é chamado de “possível e indeterminado” quando:",
+        opcoes: ["Não tem solução", "Tem exatamente uma solução", "Tem infinitas soluções", "Nenhuma das anteriores"],
+        correta: 2
+      }
+    ];
+
+    let indice = 0;
+    let respostaSelecionada = null;
+    let vidas = 4;
+    let acertos = 0;
+    let erros = 0;
+    let pulos = 0;
+
+    function atualizarStatus() {
+      document.getElementById("lives").textContent = "❤️".repeat(vidas);
+      document.getElementById("progress").style.width = ((indice) / perguntas.length) * 100 + "%";
+    }
+
+    function carregarPergunta() {
+      if (vidas <= 0 || indice >= perguntas.length) return mostrarResultado();
+      const pergunta = perguntas[indice];
+      document.getElementById("question").textContent = pergunta.texto;
+      const botoes = document.querySelectorAll(".option");
+      botoes.forEach((btn, i) => {
+        btn.textContent = pergunta.opcoes[i];
+        btn.disabled = false;
+        btn.style.backgroundColor = "#203037";
+      });
+      respostaSelecionada = null;
+      document.getElementById("feedback").textContent = "";
+      atualizarStatus();
+    }
+
+    function responder(i) {
+      respostaSelecionada = i;
+      document.querySelectorAll(".option").forEach((btn, index) => {
+        btn.style.backgroundColor = index === i ? "#2a3a42" : "#203037";
+      });
+    }
+
+    function verificar() {
+      if (respostaSelecionada === null) return;
+      const correta = perguntas[indice].correta;
+      const feedback = document.getElementById("feedback");
+      if (respostaSelecionada === correta) {
+        acertos++;
+        feedback.textContent = "✅ Correto!";
+      } else {
+        erros++;
+        vidas--;
+        feedback.textContent = "❌ Incorreto!";
+      }
+      indice++;
+      setTimeout(carregarPergunta, 1000);
+    }
+
+    function pular() {
+      pulos++;
+      indice++;
+      carregarPergunta();
+    }
+
+    function mostrarResultado() {
+      document.querySelector(".container").innerHTML = `
+        <div class='question'>🏁 Resultado Final</div>
+        <p class='feedback'>✔️ Acertos: ${acertos}</p>
+        <p class='feedback'>❌ Erros: ${erros}</p>
+        <p class='feedback'>⏭️ Pulos: ${pulos}</p>
+        <button class="control-button" onclick= window.location.href='aprender.html'>Voltar Para a Trilha</button> 
+      `; /* Linha de cima para vincular no Banco de Dados */
+    }
+
+    window.onload = carregarPergunta;
+  </script>
+</body>
+</html>
