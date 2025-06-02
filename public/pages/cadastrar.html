@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cadastre-se</title>
+    <link rel="stylesheet" href="/css/cadastrar.css"> <!-- Acesso ao arquivo css -->
+</head>
+
+<body>
+    <section class="voltar"> <!-- Botão para voltar ao menu(index.html) -->
+        <button class="botao" onclick="window.location.href='/index.html'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" fill="none">
+                <path d="M55.4167 35H14.5834M14.5834 35L35 55.4166M14.5834 35L35 14.5833" stroke="#757575"
+                    stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+    </section>
+
+    <section class="login"> <!-- Botão para ir à tela de login(login.html) -->
+        <button class="botao" onclick="window.location.href='/login.html'">Entrar</button>
+    </section>
+
+    <section class="cadastrar">
+        <div class="header"> <!-- Título -->
+            Crie o seu perfil
+        </div>
+
+        <div class="idade"> <!-- Input da idade -->
+            <input class="caixa" type="number" placeholder="Idade" id="idade" required>
+        </div>
+
+        <div class="politicas"> <!-- Texto sobre as políticas -->
+            <br>
+            <p>Informar a sua idade garante que você tenha a experiência certa no MathVerse. Para saber mais, acesse a
+                nossa <a class="botao">Política de Privacidade</a><!-- Link para página das políticas -->.</p>
+        </div>
+
+        <div class="nome"> <!-- Input do nome(não obrigatório) -->
+            <input class="caixa" type="text" placeholder="Nome(opcional)" id="nome">
+        </div>
+
+        <div class="email"> <!-- Input do e-mail -->
+            <input class="caixa" type="text" placeholder="E-mail" id="email" required>
+        </div>
+
+        <div class="senha"> <!-- Input da senha -->
+            <input class="caixa" type="text" placeholder="Senha" id="senha" required>
+        </div>
+
+        <div class="criar"> <!-- Botão para criar a conta -->
+            <button class="botao" onclick="criarConta()">Criar</button>
+        </div>
+
+        <div class="rodape"> <!-- Texto do rodapé -->
+            <p>Ao entrar no Mathverse, você concorda com os nossos <a class="botao">Termos
+                    e Política de Privacidade</a><!-- Link para página das políticas -->.</p>
+        </div>
+    </section>
+
+    <script>
+        async function criarConta() {
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+
+            if (!idade || !email || !senha) {
+                alert("Preencha todos os campos obrigatórios!");
+                return;
+            }
+
+            try {
+                const resposta = await fetch('http://localhost:3000/usuarios', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome, idade, email, senha })
+                });
+
+                const resultado = await resposta.text();
+                alert(resultado);
+                if (resposta.ok) {
+                    window.location.href = 'aprender.html';
+                }
+
+            } catch (erro) {
+                alert("Erro ao cadastrar: " + erro.message);
+            }
+        }
+    </script>
+</body>
+
+</html>

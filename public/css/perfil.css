@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
+
+body {
+    width: 1920px;
+    height: 1080px;
+    background: #203037;
+    transform: scale(0.8);
+    transform-origin: top left;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.divisores .barra_vertical {
+    position: absolute;
+    top: -1%;
+    bottom: 0;
+    left: 25%;
+    width: 3px;
+    height: 107%;
+    background: rgba(190, 190, 190, 0.85);
+}
+
+.divisores .barra_horizontal {
+    position: absolute;
+    left: 25%;
+    right: 0;
+    top: 30%;
+    width: 100%;
+    height: 3px;
+    background: rgba(190, 190, 190, 0.85);
+}
+
+.paginas {
+    position: relative;
+    justify-content: left;
+    align-items: left;
+    margin-top: -1%;
+    margin-left: -1%;
+}
+
+.paginas .botao {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.paginas .titulo {
+    width: 304px;
+    height: 78px;
+    margin-top: 0;
+    margin-left: 3%;
+    flex-shrink: 0;
+    color: rgba(0, 177, 255, 0.95);
+    font-family: Karst;
+    font-size: 65px;
+    font-weight: 900;
+    line-height: normal;
+    letter-spacing: -0.55px;
+}
+
+.paginas .pagina_aprender {
+    display: flex;
+    width: 282px;
+    padding-left: 1px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-top: 6%;
+    margin-left: -3.1%;
+}
+
+.paginas .pagina_aprender .texto {
+    color: #FFF;
+    font-family: Lalezar;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: -30%;
+    margin-left: 80%;
+}
+
+.paginas .pagina_praticar {
+    display: flex;
+    width: 282px;
+    padding-left: 1px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-top: 1.5%;
+    margin-left: -3.25%;
+}
+
+.paginas .pagina_praticar .texto {
+    color: #FFF;
+    font-family: Lalezar;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: -33%;
+    margin-left: 88%;
+}
+
+.paginas .pagina_ranking {
+    display: flex;
+    width: 282px;
+    padding-left: 1px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-top: 1%;
+    margin-left: -3.35%;
+}
+
+.paginas .pagina_ranking .texto {
+    color: #FFF;
+    font-family: Lalezar;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: -36.67%;
+    margin-left: 85%;
+}
+
+.paginas .pagina_missoes {
+    display: flex;
+    width: 282px;
+    padding-left: 1px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-top: 1.2%;
+    margin-left: -3.25%;
+}
+
+.paginas .pagina_missoes .texto {
+    color: #FFF;
+    font-family: Lalezar;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: -31%;
+    margin-left: 85%;
+}
+
+.paginas .pagina_premium {
+    display: flex;
+    width: 282px;
+    padding-left: 1px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-top: 1%;
+    margin-left: -3.15%;
+}
+
+.paginas .pagina_premium .texto {
+    color: #FFF;
+    font-family: Lalezar;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: -30%;
+    margin-left: 80%;
+}
+
+.paginas .pagina_perfil {
+    display: flex;
+    width: 282px;
+    padding-left: 1px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-top: 1%;
+    margin-left: -2.9%;
+}
+
+.paginas .pagina_perfil .texto {
+    color: #02AAF5;
+    font-family: Lalezar;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: -57%;
+    margin-left: 95%;
+}
+
+.foto {
+    position: relative;
+    display: flex;
+    width: 550px;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    margin-top: -49.5%;
+    margin-left: 36.5%;
+}
+
+.foto .avatar {
+    position: absolute;
+    margin-top: 0;
+    margin-left: -100%;
+    background: rgba(217, 217, 217, 0.50);
+    border-radius: 40px;
+}
+
+.foto .botao {
+    position: absolute;
+    transform: scale(0.15);
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+    margin-top: -40%;
+    margin-left: -55%;
+}
+
+.senhas {
+    position: relative;
+    display: flex;
+    width: 600px;
+    height: 700px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 35%;
+}
+
+.senhas .texto {
+    width: 224px;
+    height: 10px;
+    flex-shrink: 0;
+    color: #FFF;
+    font-family: Lalezar;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 44px;
+}
+
+.senhas .senha_atual{
+    position: absolute;
+    display: flex;
+    width: 1073px;
+    height: 168px;
+    margin-top: -300px;
+    margin-left: 50%;
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
+
+.senhas .senha_nova{
+    position: absolute;
+    display: flex;
+    width: 1073px;
+    height: 168px;
+    margin-top: 80px;
+    margin-left: 50%;
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
+
+.senhas .caixa{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 20px;
+    border: 1px solid #8F909A;
+    background: rgba(255, 255, 255, 0.30);
+    color: #C5C6D0;
+    font-family: Lalezar;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+.senhas .caixa::placeholder{
+    color: #C5C6D0;
+}
+
+.senhas .salvar{
+    position: absolute;
+    display: flex;
+    width: 330px;
+    height: 60px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 380px;
+    margin-left: -72%;
+}
+
+.senhas .salvar .botao{
+    display: flex;
+    padding: 10px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 40px;
+    border-color: transparent;
+    background: rgb(0, 177, 255, 0.2);
+    color: #FFF;
+    text-align: center;
+    font-family: Lalezar;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+}
+
+.senhas .sair{
+    position: absolute;
+    display: flex;
+    width: 254px;
+    height: 100px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 750px;
+    margin-left: 2400px;
+}
+
+.senhas .sair .botao{
+    display: flex;
+    padding: 10px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 40px;
+    border-color: transparent;
+    background: rgba(0, 177, 255, 0.79);
+    color: #FFF;
+    text-align: center;
+    font-family: Lalezar;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+}

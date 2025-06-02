@@ -1,0 +1,470 @@
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
+
+body {
+    width: 1920px;
+    height: 1080px;
+    background: #203037;
+    transform: scale(0.8);
+    transform-origin: top left;
+    overflow: scroll;
+    overflow-x: hidden;
+    display: inline-block;
+}
+
+.divisor .barra_vertical {
+    position: absolute;
+    top: -1%;
+    bottom: 0;
+    left: 25%;
+    width: 3px;
+    height: 240%;
+    background: rgba(190, 190, 190, 0.85);
+}
+
+.paginas {
+    position: relative;
+    justify-content: left;
+    align-items: left;
+    margin-top: -1%;
+    margin-left: -1%;
+}
+
+.paginas .botao {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.paginas .titulo {
+    width: 304px;
+    height: 78px;
+    margin-top: 0;
+    margin-left: 3%;
+    flex-shrink: 0;
+    color: rgba(0, 177, 255, 0.95);
+    font-family: Karst;
+    font-size: 65px;
+    font-weight: 900;
+    line-height: normal;
+    letter-spacing: -0.55px;
+}
+
+.paginas .pagina_aprender {
+    display: flex;
+    width: 282px;
+    padding-left: 1px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-top: 6%;
+    margin-left: -3.1%;
+}
+
+.paginas .pagina_aprender .texto {
+    color: #02AAF5;
+    font-family: Lalezar;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: -30%;
+    margin-left: 80%;
+}
+
+.paginas .pagina_praticar {
+    display: flex;
+    width: 282px;
+    padding-left: 1px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-top: 1.5%;
+    margin-left: -3.25%;
+}
+
+.paginas .pagina_praticar .texto {
+    color: #FFF;
+    font-family: Lalezar;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: -33%;
+    margin-left: 88%;
+}
+
+.paginas .pagina_ranking {
+    display: flex;
+    width: 282px;
+    padding-left: 1px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-top: 1%;
+    margin-left: -3.35%;
+}
+
+.paginas .pagina_ranking .texto {
+    color: #FFF;
+    font-family: Lalezar;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: -36.67%;
+    margin-left: 85%;
+}
+
+.paginas .pagina_missoes {
+    display: flex;
+    width: 282px;
+    padding-left: 1px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-top: 1.2%;
+    margin-left: -3.25%;
+}
+
+.paginas .pagina_missoes .texto {
+    color: #FFF;
+    font-family: Lalezar;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: -31%;
+    margin-left: 85%;
+}
+
+.paginas .pagina_premium {
+    display: flex;
+    width: 282px;
+    padding-left: 1px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-top: 1%;
+    margin-left: -3.15%;
+}
+
+.paginas .pagina_premium .texto {
+    color: #FFF;
+    font-family: Lalezar;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: -30%;
+    margin-left: 80%;
+}
+
+.paginas .pagina_perfil {
+    display: flex;
+    width: 282px;
+    padding-left: 1px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-top: 1%;
+    margin-left: -2.9%;
+}
+
+.paginas .pagina_perfil .texto {
+    color: #FFF;
+    font-family: Lalezar;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: -57%;
+    margin-left: 95%;
+}
+
+.trilha {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -43%;
+  margin-left: 55%;
+}
+
+.trilha .voltar {
+  display: flex;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.trilha .voltar .texto {
+  height: 29px;
+  flex-shrink: 0;
+  font-family: Lalezar;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 100%;
+  margin-top: 0;
+  margin-left: 10px;
+}
+
+.trilha .titulo {
+  display: flex;
+  height: 29px;
+  flex-shrink: 0;
+  font-family: Lalezar;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 100%;
+  margin-top: -3%;
+  margin-left: 5%;
+}
+
+.trilha .header .botao {
+  display: flex;
+  width: 100px;
+  height: 47px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: -4.5%;
+  margin-left: 80%;
+  font-family: Lalezar;
+  font-size: 24px;
+  font-style: normal;
+  line-height: 100%;
+  border-radius: 10px;
+  color: #FFF;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.trilha .header .botao .imagem{
+  margin-top: 0;
+  margin-left: -500%;
+}
+
+.trilha .header .botao .texto {
+  margin-top: 30%;
+  margin-left: 10%;
+}
+
+.trilha .sub-titulo {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  margin-top: 5%;
+  margin-left: 36.25%;
+}
+
+.trilha .sub-titulo .barra_esquerda {
+  display: flex;
+  width: 200px;
+  height: 3px;
+  background: rgba(190, 190, 190, 0.85);
+  margin-left: -134%;
+}
+
+.trilha .sub-titulo .texto {
+  position: absolute;
+  display: flex;
+  width: 260px;
+  height: 18px;
+  flex-shrink: 0;
+  color: #BEBEBE;
+  font-family: Lalezar;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 100%;
+}
+
+.trilha .sub-titulo .barra_direita {
+  position: absolute;
+  display: flex;
+  width: 200px;
+  height: 3px;
+  background: rgba(190, 190, 190, 0.85);
+  margin-left: 137%;
+}
+
+.trilha .atividades {
+  position: relative;
+  margin-top: 15%;
+  margin-left: 43%;
+}
+
+.trilha .atividades .botao {
+  display: flex;
+  width: 105px;
+  height: 105px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  margin-top: 5%;
+}
+
+.trilha .secao1 .header {
+  width: 733px;
+  height: 120px;
+  flex-shrink: 0;
+  border: 5px solid #FF9600;
+  background: #FF9600;
+}
+
+.trilha .secao1 .header .botao {
+  border: 2px solid #CC7800;
+  background: #FF9600;
+}
+
+.trilha .secao1 .voltar .texto {
+  color: rgba(255, 217, 164);
+}
+
+.trilha .secao1 .titulo {
+  color: #FFF1DD;
+}
+
+.trilha .secao1 .sub-titulo .texto {
+  margin-left: -20px;
+}
+
+.trilha .secao1 .atividades .botao {
+  border-radius: 20px;
+  border: 3px solid #FF9600;
+  background: #FF9600;
+}
+
+.trilha .secao1 .atividades .atividade1 {
+  margin-left: -30%;
+}
+
+.trilha .secao1 .atividades .atividade3 {
+  margin-left: 30%;
+}
+
+.trilha .secao2 {
+  position: absolute;
+  margin-top: 200%;
+}
+
+.trilha .secao2 .header {
+  width: 733px;
+  height: 120px;
+  flex-shrink: 0;
+  border: 5px solid #49A50A;
+  background: #49A50A;
+}
+
+.trilha .secao2 .header .botao {
+  border: 2px solid #327206;
+  background: #49A50A;
+}
+
+.trilha .secao2 .voltar .texto {
+  color: rgba(255, 217, 164);
+}
+
+.trilha .secao2 .titulo {
+  color: #FFF1DD;
+}
+
+.trilha .secao2 .sub-titulo .texto {
+  margin-left: 60px;
+}
+
+.trilha .secao2 .atividades .botao {
+  border-radius: 20px;
+  border: 3px solid #49A50A;
+  background: #49A50A;
+}
+
+.trilha .secao2 .atividades .atividade1 {
+  margin-left: -30%;
+}
+
+.trilha .secao2 .atividades .atividade3 {
+  margin-left: 30%;
+}
+
+.trilha .secao3 {
+  position: absolute;
+  margin-top: 400%;
+}
+
+.trilha .secao3 .header {
+  width: 733px;
+  height: 120px;
+  flex-shrink: 0;
+  border: 5px solid #1CB0F6;
+  background: #1CB0F6;
+}
+
+.trilha .secao3 .header .botao {
+  border: 2px solid #0781BA;
+  background: #1CB0F6;
+}
+
+.trilha .secao3 .voltar .texto {
+  color: rgba(255, 217, 164);
+}
+
+.trilha .secao3 .titulo {
+  color: #FFF1DD;
+}
+
+.trilha .secao3 .sub-titulo .texto {
+  margin-left: 24px;
+}
+
+.trilha .secao3 .atividades .botao {
+  border-radius: 20px;
+  border: 3px solid #1CB0F6;
+  background: #1CB0F6;
+}
+
+.trilha .secao3 .atividades .atividade1 {
+  margin-left: -30%;
+}
+
+.trilha .secao3 .atividades .atividade3 {
+  margin-left: 30%;
+}
+
+.trabalho {
+  position: absolute;
+  width: 733px;
+  height: 120px;
+  margin-top: 77%;
+  margin-left: 55%;
+  flex-shrink: 0;
+  border: 5px solid #FF4B4B;
+  background: #FF4B4B;
+}
+
+.trabalho .imagem {
+  display: flex;
+  margin-top: 5%;
+  margin-left: 2%;
+}
+
+.trabalho .texto {
+  display: flex;
+  width: 650px;
+  color: #FFF;
+  font-family: Lalezar;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 44px;
+  margin-top: -6.6%;
+  margin-left: 12%;
+}

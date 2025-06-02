@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz</title>
+  <link rel="stylesheet" href="/css/quiz.css" />
+</head>
+<body>
+
+   <a href="aprender.html" class="botao-voltar">✖</a>
+
+  <div class="container">
+    <div class="lives" id="lives">❤️❤️❤️❤️❤️</div>
+    <div class="progress-bar"><div id="progress" class="progress"></div></div>
+    <div id="question" class="question">Carregando pergunta...</div>
+    <div class="options">
+      <button class="option" onclick="responder(0)">A</button>
+      <button class="option" onclick="responder(1)">B</button>
+      <button class="option" onclick="responder(2)">C</button>
+      <button class="option" onclick="responder(3)">D</button>
+    </div>
+    <div class="controls">
+      <button class="control-button" onclick="pular()">Pular</button>
+      <button class="control-button" onclick="verificar()">Verificar</button>
+    </div>
+    <div id="feedback" class="feedback"></div>
+  </div>
+
+  <script>
+    const perguntas = [
+      {
+        texto: "O produto (x + 2) (x - 3) resulta em:",
+        opcoes: ["x² - x - 6", "x² + 5x + 6", "x² - x + 6", "x² - 5x + 6"],
+        correta: 0
+      },
+      {
+        texto: "A fatoração de x² - 9 é:",
+        opcoes: [
+          "(x - 9)(x + 1)",
+          "(x + 3) (x - 3)",
+          "(x - 3) (x + 3)",
+          "x(x - 9)"
+        ],
+        correta: 2
+      },
+      {
+        texto: "Se P(x) = x² + 2x + 1, então P(2) é:",
+        opcoes: ["3", "5", "7", "9"],
+        correta: 3
+      },
+      {
+        texto: "Qual das opções representa um polinômio do segundo grau completo?",
+        opcoes: ["x² - 5", "2x² + 3x - 7", "5x - 2", "x³+ x²"],
+        correta: 1
+      },
+      {
+        texto: "O termo independente do polinômio x³ + 2x² - x + 5 é:",
+        opcoes: ["-1", "5", "3", "1"],
+        correta: 1
+      },
+      {
+        texto: "Qual polinômio tem grau igual a 0?",
+        opcoes: ["3x + 2", "x² + 4", "7", "5x³"],
+        correta: 2
+      },
+      {
+        texto: "O polinômio x² - 9 pode ser reescrito como:",
+        opcoes: ["(x - 3)²", "(x - 9)²", "(x + 9)²", "(x + 3) (x - 3)"],
+        correta: 3
+      },
+      {
+        texto: "Qual dos polinômios abaixo NÃO pode ser fatorado usando produtos notáveis?",
+        opcoes: ["x² - 4", "x² + 6x + 9", "x² + 3x + 2", "x² + 6x - 9"],
+        correta: 2
+      },
+      {
+        texto: "Qual polinômio abaixo tem exatamente dois termos?",
+        opcoes: ["x³ + 5", "x³ - 1", "x² + 4x", "x² + x + 1"],
+        correta: 0
+      },
+      {
+        texto: "Quantos termos tem o polinômio 5x³ + 2x² - x + 4?",
+        opcoes: ["2", "4", "3", "5"],
+        correta: 1
+      },
+      {
+        texto: "Se R(x) = x² + 2x + 1, então R(-1) é:",
+        opcoes: ["0", "-1", "0", "2"],
+        correta: 2
+      },
+      {
+        texto: "Se P(x) = (x - 2)², então o valor de P(2) é:",
+        opcoes: ["-2", "0", "1", "2"],
+        correta: 1
+      }
+    ];
+
+    let indice = 0;
+    let respostaSelecionada = null;
+    let vidas = 5;
+    let acertos = 0;
+    let erros = 0;
+    let pulos = 0;
+
+    function atualizarStatus() {
+      document.getElementById("lives").textContent = "❤️".repeat(vidas);
+      document.getElementById("progress").style.width = ((indice) / perguntas.length) * 100 + "%";
+    }
+
+    function carregarPergunta() {
+      if (vidas <= 0 || indice >= perguntas.length) return mostrarResultado();
+      const pergunta = perguntas[indice];
+      document.getElementById("question").textContent = pergunta.texto;
+      const botoes = document.querySelectorAll(".option");
+      botoes.forEach((btn, i) => {
+        btn.textContent = pergunta.opcoes[i];
+        btn.disabled = false;
+        btn.style.backgroundColor = "#203037";
+      });
+      respostaSelecionada = null;
+      document.getElementById("feedback").textContent = "";
+      atualizarStatus();
+    }
+
+    function responder(i) {
+      respostaSelecionada = i;
+      document.querySelectorAll(".option").forEach((btn, index) => {
+        btn.style.backgroundColor = index === i ? "#2a3a42" : "#203037";
+      });
+    }
+
+    function verificar() {
+      if (respostaSelecionada === null) return;
+      const correta = perguntas[indice].correta;
+      const feedback = document.getElementById("feedback");
+      if (respostaSelecionada === correta) {
+        acertos++;
+        feedback.textContent = "✅ Correto!";
+      } else {
+        erros++;
+        vidas--;
+        feedback.textContent = "❌ Incorreto!";
+      }
+      indice++;
+      setTimeout(carregarPergunta, 1000);
+    }
+
+    function pular() {
+      pulos++;
+      indice++;
+      carregarPergunta();
+    }
+
+function mostrarResultado() {
+  fetch('http://localhost:3000/usuarios/pontos-jogo', {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      nome_jogo: 'polimonios_Quiz',  
+      pontos: acertos
+    })
+  }).then(() => {
+    document.querySelector(".container").innerHTML = `
+      <div class='question'>🏁 Resultado Final</div>
+      <p class='feedback'>✔️ Acertos: ${acertos}</p>
+      <p class='feedback'>❌ Erros: ${erros}</p>
+      <p class='feedback'>⏭️ Pulos: ${pulos}</p>
+      <button class="control-button" onclick="window.location.href='aprender.html'">Voltar Para a Trilha</button> 
+    `;
+  }).catch((error) => {
+    console.error('Erro ao salvar pontos:', error);
+  });
+}
+
+    window.onload = carregarPergunta;
+  </script>
+</body>
+</html>

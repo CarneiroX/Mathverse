@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resumo de Funções de 1º Grau e Gráficos</title>
+  <link rel="stylesheet" href="/css/quiz.css" />
+</head>
+
+<body>
+
+  <a href="aprender.html" class="botao-voltar">✖</a>
+
+  <div class="container">
+    <div class="lives" id="lives">❤️❤️❤️❤️</div>
+    <div class="progress-bar">
+      <div id="progress" class="progress"></div>
+    </div>
+    <div id="question" class="question">Carregando pergunta...</div>
+    <div class="options">
+      <button class="option" onclick="responder(0)">A</button>
+      <button class="option" onclick="responder(1)">B</button>
+      <button class="option" onclick="responder(2)">C</button>
+      <button class="option" onclick="responder(3)">D</button>
+    </div>
+    <div class="controls">
+      <button class="control-button" onclick="pular()">Pular</button>
+      <button class="control-button" onclick="verificar()">Verificar</button>
+    </div>
+    <div id="feedback" class="feedback"></div>
+  </div>
+
+  <script>
+    const perguntas = [
+      {
+        texto: "Qual das expressões abaixo representa uma função do 1º grau?",
+        opcoes: ["f(x) = x² + 3", "f(x) = √x + 1", "f(x) = 2x + 5", "f(x) = x² - 3"],
+        correta: 2
+      },
+      {
+        texto: "O gráfico de uma função do 1º grau é sempre:",
+        opcoes: [
+          "Uma parábola",
+          "Uma reta",
+          "Uma linha curva",
+          "Um círculo"
+        ],
+        correta: 1
+      },
+      {
+        texto: "Em f(x) = 3x + 2, o valor de f(0) é: ",
+        opcoes: ["0", "2", "3", "5"],
+        correta: 1
+      },
+      {
+        texto: "Qual é o coeficiente angular da função f(x) = -2x + 7?",
+        opcoes: [
+          "2",
+          "7",
+          "-7",
+          "-2"
+        ],
+        correta: 3
+      },
+      {
+        texto: "Se a função é f(x) = x + 1, o gráfico dessa função:",
+        opcoes: [
+          "Sobe da esquerda para a direita",
+          "Desce da esquerda para a direita",
+          "É uma curva fechada",
+          "É constante"
+        ],
+        correta: 0
+      },
+      {
+        texto: "Qual alternativa representa uma função do 1º grau com gráfico decrescente?",
+        opcoes: ["f(x) = 4x + 1", "f(x) = 0x + 5", "f(x) = -3x + 2", "f(x) = x² - 1"],
+        correta: 2
+      },
+      {
+        texto: "Uma função do 1º grau pode ter como gráfico uma linha (quando a função é constante, coeficiente angular = 0):",
+        opcoes: ["Círculo", "Hipérbole", "Vertical", "Horizontal"],
+        correta: 3
+      }
+    ];
+
+    let indice = 0;
+    let respostaSelecionada = null;
+    let vidas = 4;
+    let acertos = 0;
+    let erros = 0;
+    let pulos = 0;
+
+    function atualizarStatus() {
+      document.getElementById("lives").textContent = "❤️".repeat(vidas);
+      document.getElementById("progress").style.width = ((indice) / perguntas.length) * 100 + "%";
+    }
+
+    function carregarPergunta() {
+      if (vidas <= 0 || indice >= perguntas.length) return mostrarResultado();
+      const pergunta = perguntas[indice];
+      document.getElementById("question").textContent = pergunta.texto;
+      const botoes = document.querySelectorAll(".option");
+      botoes.forEach((btn, i) => {
+        btn.textContent = pergunta.opcoes[i];
+        btn.disabled = false;
+        btn.style.backgroundColor = "#203037";
+      });
+      respostaSelecionada = null;
+      document.getElementById("feedback").textContent = "";
+      atualizarStatus();
+    }
+
+    function responder(i) {
+      respostaSelecionada = i;
+      document.querySelectorAll(".option").forEach((btn, index) => {
+        btn.style.backgroundColor = index === i ? "#2a3a42" : "#203037";
+      });
+    }
+
+    function verificar() {
+      if (respostaSelecionada === null) return;
+      const correta = perguntas[indice].correta;
+      const feedback = document.getElementById("feedback");
+      if (respostaSelecionada === correta) {
+        acertos++;
+        feedback.textContent = "✅ Correto!";
+      } else {
+        erros++;
+        vidas--;
+        feedback.textContent = "❌ Incorreto!";
+      }
+      indice++;
+      setTimeout(carregarPergunta, 1000);
+    }
+
+    function pular() {
+      pulos++;
+      indice++;
+      carregarPergunta();
+    }
+
+    function mostrarResultado() {
+      fetch('http://localhost:3000/usuarios/pontos-jogo', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nome_jogo: 'funcoes_primeiro_grau_Resumo',  
+          pontos: acertos
+        })
+      }).then(() => {
+        document.querySelector(".container").innerHTML = `
+      <div class='question'>🏁 Resultado Final</div>
+      <p class='feedback'>✔️ Acertos: ${acertos}</p>
+      <p class='feedback'>❌ Erros: ${erros}</p>
+      <p class='feedback'>⏭️ Pulos: ${pulos}</p>
+      <button class="control-button" onclick="window.location.href='aprender.html'">Voltar Para a Trilha</button> 
+    `;
+      }).catch((error) => {
+        console.error('Erro ao salvar pontos:', error);
+      });
+    }
+    window.onload = carregarPergunta;
+  </script>
+</body>
+
+</html>

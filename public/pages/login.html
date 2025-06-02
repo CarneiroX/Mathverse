@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entre</title>
+  <link rel="stylesheet" href="/css/login.css" />
+</head>
+<body>
+  <section class="voltar">
+    <button class="botao" onclick="window.location.href='../index.html'">
+      <!-- SVG aqui -->
+    </button>
+  </section>
+
+  <section class="criar_conta">
+    <button class="botao" onclick="window.location.href='cadastrar.html'">Criar Conta</button>
+  </section>
+
+  <section class="login">
+    <div class="header">Entrar</div>
+
+    <div class="email">
+      <input class="caixa" type="text" placeholder="E-mail" id="email" required />
+    </div>
+
+    <div class="senha">
+      <input class="caixa" type="password" placeholder="Senha" id="senha" required />
+    </div>
+
+    <div class="entrar">
+      <button class="botao" onclick="entrar()">Entrar</button>
+    </div>
+
+    <div class="rodape">
+      <p>Ao entrar no Mathverse, você concorda com os nossos <a class="botao">Termos e Política de Privacidade</a>.</p>
+    </div>
+  </section>
+
+  <script>
+    async function entrar() {
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+
+      if (!email || !senha) {
+        alert('Preencha todos os campos!');
+        return;
+      }
+
+      try {
+        const resposta = await fetch('http://localhost:3000/usuarios/login', {
+          method: 'POST',
+          credentials: 'include', 
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, senha }),
+        });
+
+        if (resposta.ok) {
+          window.location.href = 'aprender.html';
+        } else {
+          const msg = await resposta.text();
+          alert('Erro: ' + msg);
+        }
+      } catch (erro) {
+        alert('Erro na conexão: ' + erro.message);
+      }
+    }
+  </script>
+</body>
+</html>

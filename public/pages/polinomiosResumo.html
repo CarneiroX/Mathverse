@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resumo de Polinômios</title>
+  <link rel="stylesheet" href="/css/quiz.css" />
+</head>
+
+<body>
+
+  <a href="aprender.html" class="botao-voltar">✖</a>
+
+  <div class="container">
+    <div class="lives" id="lives">❤️❤️❤️❤️</div>
+    <div class="progress-bar">
+      <div id="progress" class="progress"></div>
+    </div>
+    <div id="question" class="question">Carregando pergunta...</div>
+    <div class="options">
+      <button class="option" onclick="responder(0)">A</button>
+      <button class="option" onclick="responder(1)">B</button>
+      <button class="option" onclick="responder(2)">C</button>
+      <button class="option" onclick="responder(3)">D</button>
+    </div>
+    <div class="controls">
+      <button class="control-button" onclick="pular()">Pular</button>
+      <button class="control-button" onclick="verificar()">Verificar</button>
+    </div>
+    <div id="feedback" class="feedback"></div>
+  </div>
+
+  <script>
+    const perguntas = [
+      {
+        texto: "Qual é o grau do polinômio P(x) = 2x³ + 4x² + 7?",
+        opcoes: ["3", "2", "1", "0"],
+        correta: 0
+      },
+      {
+        texto: "Polinômios com um único termo são chamados:",
+        opcoes: [
+          "Binômios",
+          "Polinômios",
+          "Trinômio",
+          "Monômios"
+        ],
+        correta: 3
+      },
+      {
+        texto: "Quantos termos tem o polinômio Q(x) = x⁵ + 2x³ - x + 1?",
+        opcoes: ["2", "3", "4", "5"],
+        correta: 2
+      },
+      {
+        texto: "P(x) = 0 é um polinômio de grau:",
+        opcoes: [
+          "0",
+          "1",
+          "Indeterminado",
+          "2"
+        ],
+        correta: 2
+      },
+      {
+        texto: "O que é um polinômio?",
+        opcoes: [
+          "Equação com apenas um termo",
+          "Expressões formadas por números e letras",
+          "Expressão formada apenas por radicais",
+          "Um número inteiro negativo"
+        ],
+        correta: 1
+      },
+      {
+        texto: "Qual dos seguintes é um polinômio de primeiro grau?",
+        opcoes: ["x² + 3x + 2", "7x + 4x²", "2x + 5", "4x³ + 2x² + 8x"],
+        correta: 2
+      },
+      {
+        texto: "Qual é o grau do polinômio 5x³ - 2x + 7?",
+        opcoes: ["3", "2", "1", "5"],
+        correta: 0
+      }
+    ];
+
+    let indice = 0;
+    let respostaSelecionada = null;
+    let vidas = 4;
+    let acertos = 0;
+    let erros = 0;
+    let pulos = 0;
+
+    function atualizarStatus() {
+      document.getElementById("lives").textContent = "❤️".repeat(vidas);
+      document.getElementById("progress").style.width = ((indice) / perguntas.length) * 100 + "%";
+    }
+
+    function carregarPergunta() {
+      if (vidas <= 0 || indice >= perguntas.length) return mostrarResultado();
+      const pergunta = perguntas[indice];
+      document.getElementById("question").textContent = pergunta.texto;
+      const botoes = document.querySelectorAll(".option");
+      botoes.forEach((btn, i) => {
+        btn.textContent = pergunta.opcoes[i];
+        btn.disabled = false;
+        btn.style.backgroundColor = "#203037";
+      });
+      respostaSelecionada = null;
+      document.getElementById("feedback").textContent = "";
+      atualizarStatus();
+    }
+
+    function responder(i) {
+      respostaSelecionada = i;
+      document.querySelectorAll(".option").forEach((btn, index) => {
+        btn.style.backgroundColor = index === i ? "#2a3a42" : "#203037";
+      });
+    }
+
+    function verificar() {
+      if (respostaSelecionada === null) return;
+      const correta = perguntas[indice].correta;
+      const feedback = document.getElementById("feedback");
+      if (respostaSelecionada === correta) {
+        acertos++;
+        feedback.textContent = "✅ Correto!";
+      } else {
+        erros++;
+        vidas--;
+        feedback.textContent = "❌ Incorreto!";
+      }
+      indice++;
+      setTimeout(carregarPergunta, 1000);
+    }
+
+    function pular() {
+      pulos++;
+      indice++;
+      carregarPergunta();
+    }
+
+    function mostrarResultado() {
+      fetch('http://localhost:3000/usuarios/pontos-jogo', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nome_jogo: 'polimonios_Resumo',  
+          pontos: acertos
+        })
+      }).then(() => {
+        document.querySelector(".container").innerHTML = `
+      <div class='question'>🏁 Resultado Final</div>
+      <p class='feedback'>✔️ Acertos: ${acertos}</p>
+      <p class='feedback'>❌ Erros: ${erros}</p>
+      <p class='feedback'>⏭️ Pulos: ${pulos}</p>
+      <button class="control-button" onclick="window.location.href='aprender.html'">Voltar Para a Trilha</button> 
+    `;
+      }).catch((error) => {
+        console.error('Erro ao salvar pontos:', error);
+      });
+    }
+
+    window.onload = carregarPergunta;
+  </script>
+</body>
+
+</html>
